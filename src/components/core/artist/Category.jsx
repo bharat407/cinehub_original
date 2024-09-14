@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   FaCamera,
-  FaMusic,
   FaMicrophone,
   FaGuitar,
   FaImage,

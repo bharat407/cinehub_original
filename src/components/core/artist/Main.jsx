@@ -36,7 +36,7 @@ const Artist = () => {
       <div className="">
         <div className="relative ">
           <div className="relative cursor-pointer flex justify-around bg-gray-100">
-            <div className="banner-text absolute top-[15vh] sm:top-[20vh] md:top-[25vh] lg:top-[30vh] transform -translate-x-1/4 -translate-y-1/2 text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal z-10 text-left flex flex-col items-start">
+            <div className="banner-text mt-[10vh] absolute top-[15vh] sm:top-[20vh] md:top-[25vh] lg:top-[30vh] transform -translate-x-1/4 -translate-y-1/2 text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal z-10 text-left flex flex-col items-start">
               <h3>Over</h3>
               <h2 className="font-medium">7,00,000</h2>
               <h3>Self-registered</h3>
@@ -44,7 +44,7 @@ const Artist = () => {
             </div>
 
             <img
-              className="w-full h-auto"
+              className="w-full mt-[12vh] h-auto"
               src={Banner}
               alt="Enhance your Casting & Talent-Management operations with Talentrack, KNOW MORE"
             />

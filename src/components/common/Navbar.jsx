@@ -32,7 +32,7 @@ const Navbar = () => {
     <div>
       <div className="fixed top-0 inset-x-0 w-full text-center border-b-2 border-gray-300 shadow-md bg-white py-4 z-50">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-evenly items-center">
             <NavLink to="/" className="text-2xl font-medium text-[#d10001]">
               CineHub
             </NavLink>
@@ -59,7 +59,7 @@ const Navbar = () => {
               >
                 Projects
               </NavLink>
-              <DropdownMenu title="Hire Artists" items={hireArtistsItems} />
+              {/* <DropdownMenu title="Hire Artists" items={hireArtistsItems} /> */}
               <NavLink
                 to="/agency"
                 className="hover:text-[#ff6347] transition-all ease-in"
@@ -72,7 +72,7 @@ const Navbar = () => {
               >
                 Managed Services
               </NavLink>
-              <DropdownMenu title="More" items={moreItems} />
+              {/* <DropdownMenu title="More" items={moreItems} /> */}
             </div>
 
             {/* Authentication Buttons - hidden on mobile, visible on larger screens */}
@@ -104,10 +104,10 @@ const Navbar = () => {
               >
                 Projects
               </NavLink>
-              <MobileDropdownMenu
+              {/* <MobileDropdownMenu
                 title="Hire Artists"
                 items={hireArtistsItems}
-              />
+              /> */}
               <NavLink to="/agency" className="block py-2 hover:text-[#ff6347]">
                 Talent Agencies
               </NavLink>
@@ -117,7 +117,7 @@ const Navbar = () => {
               >
                 Managed Services
               </NavLink>
-              <MobileDropdownMenu title="More" items={moreItems} />
+              {/* <MobileDropdownMenu title="More" items={moreItems} /> */}
               <button
                 className="w-full text-[#d10001] text-lg py-2 mt-2 rounded-3xl border border-solid border-[#d10001] font-medium hover:text-white hover:bg-[#d10001] bg-white transition-all ease-in-out duration-300"
                 onClick={toggleLoginModal}

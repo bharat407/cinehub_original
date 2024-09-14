@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from "react";
 import castingData from "../../../data/castingData";
 import Video from "./Videocard";
 import Testimonial from "./Testimonial";
-import { NavLink } from "react-router-dom";
 import Recruiter from "../../models/Recruiter";
 import Navbar from "../../common/Navbar";
 
