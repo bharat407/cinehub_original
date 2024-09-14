@@ -5,6 +5,7 @@ import Video from "./Videocard";
 import Testimonial from "./Testimonial";
 import { NavLink } from "react-router-dom";
 import Recruiter from "../../models/Recruiter";
+import Navbar from "../../common/Navbar";
 
 const benefitsData = [
   {
@@ -107,15 +108,11 @@ const Home = () => {
 
   return (
     <>
-      <header className="flex overflow-hidden justify-around items-center p-4 bg-gray-100">
-        <NavLink to="/">
-          <div className="text-2xl font-medium text-[#d10001]">CineHub</div>
-        </NavLink>
-      </header>
+      <Navbar />
 
       {/* Banner */}
 
-      <div className="p-4 cursor-pointer flex justify-center bg-gray-100">
+      <div className="p-4 mt-10 cursor-pointer flex justify-center bg-gray-100">
         <img
           className="w-full max-w-4xl h-auto"
           src="https://www.talentrack.in/images/application/modules/default/rec_reg/banner.svg"
@@ -395,7 +392,7 @@ const Home = () => {
         </div>
 
         {showRecruiterModal && (
-          <div className="fixed inset-0 flex items-center justify-center">
+          <div className="fixed inset-0 mt-[20vh] flex items-center justify-center">
             <div className="relative">
               <button
                 onClick={closeModal}

@@ -6,7 +6,7 @@ import Testomonial from "./Testomonial";
 import Brand from "./Brand";
 import Banner from "../../../assets/banner.avif";
 import logo from "../../../assets/CineHub.png";
-import { NavLink } from "react-router-dom";
+import Navbar from "../../common/Navbar";
 
 const Artist = () => {
   const [showContinue, setShowContinue] = useState(true);
@@ -32,14 +32,9 @@ const Artist = () => {
 
   return (
     <div className="artist-container">
-      <header className="flex flex-col sm:flex-row justify-around items-center p-4 bg-gray-100">
-        <NavLink to="/">
-          <div className="text-2xl font-medium text-[#d10001]">CineHub</div>
-        </NavLink>
-      </header>
-
-      <div>
-        <div className="relative">
+      <Navbar />
+      <div className="">
+        <div className="relative ">
           <div className="relative cursor-pointer flex justify-around bg-gray-100">
             <div className="banner-text absolute top-[15vh] sm:top-[20vh] md:top-[25vh] lg:top-[30vh] transform -translate-x-1/4 -translate-y-1/2 text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal z-10 text-left flex flex-col items-start">
               <h3>Over</h3>
