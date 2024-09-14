@@ -41,44 +41,44 @@ const CategorySelectionScreen = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   if (!isModalOpen) {
-    return null; // Return null if the modal is closed
+    return null;
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative p-8">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+      <div className="bg-white rounded-xl shadow-2xl w-full max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl max-h-[90vh] overflow-y-auto relative p-4 sm:p-6 md:p-8">
         <button
           onClick={() => setIsModalOpen(false)}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none"
+          className="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-500 hover:text-gray-700 focus:outline-none"
           aria-label="Close"
         >
-          <FaTimes size={24} />
+          <FaTimes size={20}  />
         </button>
-        <h1 className="text-3xl font-bold text-red-600 mb-6 text-center">
+        <h1 className="text-2xl sm:text-3xl font-bold text-red-600 mb-4 sm:mb-6 text-center">
           SELECT CATEGORY
         </h1>
 
-        <div className="flex justify-between items-center mb-8">
-          <div className="flex items-center space-x-4">
-            <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-white">
-              <FaChartPie size={20} />
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-6 sm:mb-8">
+          <div className="flex items-center space-x-2 sm:space-x-4 mb-4 sm:mb-0">
+            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-red-600 rounded-full flex items-center justify-center text-white">
+              <FaChartPie size={16} />
             </div>
-            <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-gray-600">
-              <FaUser size={20} />
+            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-300 rounded-full flex items-center justify-center text-gray-600">
+              <FaUser size={16} />
             </div>
-            <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-gray-600">
-              <FaImage size={20} />
+            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-300 rounded-full flex items-center justify-center text-gray-600">
+              <FaImage size={16} />
             </div>
-            <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-gray-600">
-              <FaPen size={20} />
+            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-300 rounded-full flex items-center justify-center text-gray-600">
+              <FaPen size={16} />
             </div>
           </div>
-          <div className="text-sm text-gray-600">
+          <div className="text-xs sm:text-sm text-gray-600">
             Category &nbsp; Personal &nbsp; Location &nbsp; Finish
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-4 mb-6 sm:mb-8">
           {categories.map((category) => (
             <div
               key={category.name}
@@ -90,27 +90,29 @@ const CategorySelectionScreen = () => {
               onClick={() => setSelectedCategory(category.name)}
             >
               <div
-                className={`w-16 h-16 rounded-full border-2 flex items-center justify-center mb-2 ${
+                className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 flex items-center justify-center mb-1 sm:mb-2 ${
                   selectedCategory === category.name
                     ? "border-red-600"
                     : "border-gray-300"
                 }`}
               >
-                <category.icon size={24} />
+                <category.icon size={18}  />
               </div>
-              <span className="text-xs text-center">{category.name}</span>
+              <span className="text-[10px] sm:text-xs text-center">
+                {category.name}
+              </span>
             </div>
           ))}
         </div>
 
-        <div className="flex justify-between mt-8">
+        <div className="flex justify-between mt-6 sm:mt-8">
           <button
             onClick={() => setIsModalOpen(false)}
-            className="px-6 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-150 ease-in-out"
+            className="px-4 py-2 sm:px-6 sm:py-3 bg-gray-800 text-white text-sm sm:text-base rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-150 ease-in-out"
           >
             Back
           </button>
-          <button className="px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out">
+          <button className="px-4 py-2 sm:px-6 sm:py-3 bg-red-600 text-white text-sm sm:text-base rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out">
             Next
           </button>
         </div>

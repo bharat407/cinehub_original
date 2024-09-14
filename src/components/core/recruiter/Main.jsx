@@ -107,26 +107,23 @@ const Home = () => {
 
   return (
     <>
-      <header className="flex justify-around items-center p-4 bg-gray-100">
+      <header className="flex overflow-hidden justify-around items-center p-4 bg-gray-100">
         <NavLink to="/">
           <div className="text-2xl font-medium text-[#d10001]">CineHub</div>
         </NavLink>
-        <img
-          className=""
-          src="https://www.talentrack.in/images/application/modules/desktop/logo_campaign_txt.png"
-          alt="Find Stardom. Find Stars."
-        />
       </header>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Banner */}
-        <div className="p-4 cursor-pointer flex justify-center bg-gray-100">
-          <img
-            className="w-full max-w-4xl h-auto"
-            src="https://www.talentrack.in/images/application/modules/default/rec_reg/banner.svg"
-            alt="Enhance your Casting & Talent-Management operations with Talentrack, KNOW MORE"
-          />
-        </div>
 
+      {/* Banner */}
+
+      <div className="p-4 cursor-pointer flex justify-center bg-gray-100">
+        <img
+          className="w-full max-w-4xl h-auto"
+          src="https://www.talentrack.in/images/application/modules/default/rec_reg/banner.svg"
+          alt="Enhance your Casting & Talent-Management operations with Talentrack, KNOW MORE"
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Popular recruiters */}
         <div className="py-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 text-center">

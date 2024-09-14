@@ -40,32 +40,26 @@ const MainHome = () => {
   ];
 
   return (
-    <div>
-      {/* Navbar */}
-
+    <div className="font-sans">
       <div>
         <Navbar />
       </div>
-
-      {/* Carousal */}
 
       <div>
         <Carousal />
       </div>
 
-      {/* Details */}
-
-      <div className="max-w-4xl mx-auto p-6 bg-white">
-        <h1 className="text-5xl font-bold mb-4 text-center">
+      <div className="max-w-4xl mt-[-60vh] md:mt-0 mx-auto p-4 sm:p-6 bg-white">
+        <h1 className="text-3xl sm:text-5xl font-bold mb-4 text-center">
           Find your dream role on CineHub
         </h1>
 
-        <p className="text-center text-lg mb-12">
+        <p className="text-center text-base sm:text-lg mb-8 sm:mb-12">
           CineHub is India's largest talent-hiring platform for the Media &
           Entertainment industry.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {[
             {
               number: "1",
@@ -91,12 +85,18 @@ const MainHome = () => {
           ].map((step, index) => (
             <div key={index} className="text-center">
               <div
-                className={`${step.bgColor} rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4`}
+                className={`${step.bgColor} rounded-full w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mx-auto mb-4`}
               >
-                <span className="text-3xl font-bold">{step.number}</span>
+                <span className="text-2xl sm:text-3xl font-bold">
+                  {step.number}
+                </span>
               </div>
-              <h2 className="text-xl font-semibold mb-2">{step.title}</h2>
-              <p className="text-gray-600">{step.description}</p>
+              <h2 className="text-lg sm:text-xl font-semibold mb-2">
+                {step.title}
+              </h2>
+              <p className="text-gray-600 text-sm sm:text-base">
+                {step.description}
+              </p>
             </div>
           ))}
         </div>
@@ -104,14 +104,14 @@ const MainHome = () => {
         <div className="text-center mb-6">
           <a
             href="#"
-            className="text-red-600 p-2 rounded-xl hover:bg-[#F2F2F2] font-semibold inline-flex items-center"
+            className="text-red-600 p-2 rounded-xl hover:bg-[#F2F2F2] font-semibold inline-flex items-center text-sm sm:text-base"
           >
             LEARN MORE ABOUT HOW IT WORKS
             <FaChevronRight className="ml-1" />
           </a>
         </div>
 
-        <p className="text-center">
+        <p className="text-center text-sm sm:text-base">
           Are you a recruiter?{" "}
           <a href="#" className="text-blue-500 hover:underline">
             Know how it works for recruiters.
@@ -119,14 +119,12 @@ const MainHome = () => {
         </p>
       </div>
 
-      {/* Search */}
-
-      <div className="p-6">
-        <h1 className="text-3xl font-bold mb-6 text-center">
+      <div className="p-4 sm:p-6">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center">
           Search Auditions
         </h1>
 
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <div className="flex-grow">
             <select className="w-full p-2 border rounded-md appearance-none bg-white">
               <option>All Categories</option>
@@ -137,7 +135,7 @@ const MainHome = () => {
               <option>Location</option>
             </select>
           </div>
-          <button className="bg-red-600 text-white py-2 px-6 rounded-md">
+          <button className="bg-red-600 text-white py-2 px-6 rounded-md w-full sm:w-auto">
             Search
           </button>
         </div>
@@ -156,44 +154,50 @@ const MainHome = () => {
           </div>
         </div>
 
-        <div className="bg-gray-900 w-full text-white p-4 rounded-lg flex flex-col md:flex-row  justify-between">
-          <div className="flex items-center mb-4 md:mb-0">
-            <FaCalendarAlt className="mr-2" />
-            <p>
+        <div className="bg-gray-900 w-full text-white p-4 rounded-lg flex flex-col sm:flex-row items-center justify-between">
+          <div className="flex items-center mb-4 sm:mb-0 text-center sm:text-left">
+            <FaCalendarAlt className="mr-2 hidden sm:inline" />
+            <p className="text-sm sm:text-base">
               Looking for high-quality talent for your project? Start casting
               with Talentrack in 60 seconds!
             </p>
           </div>
-          <button className="bg-red-600 text-white py-2 px-4 rounded-md whitespace-nowrap">
+          <button className="bg-red-600 text-white py-2 px-4 rounded-md whitespace-nowrap text-sm sm:text-base">
             Share Your Requirement
           </button>
         </div>
       </div>
 
-      {/*Featured Auditions  */}
-
-      <div className="max-w-4xl mx-auto p-6">
+      <div className="max-w-4xl mx-auto p-4 sm:p-6">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold">Featured Auditions</h2>
-          <a href="#" className="text-red-600 font-semibold flex items-center">
+          <h2 className="text-2xl sm:text-3xl font-bold">Featured Auditions</h2>
+          <a
+            href="#"
+            className="text-red-600 font-semibold flex items-center text-sm sm:text-base"
+          >
             View All
             <FaChevronRight className="ml-1" />
           </a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {auditions.map((audition, index) => (
-            <div key={index} className={`${audition.bgColor} p-6 rounded-lg`}>
-              <span className="text-sm text-gray-600 mb-2 block">
+            <div
+              key={index}
+              className={`${audition.bgColor} p-4 sm:p-6 rounded-lg`}
+            >
+              <span className="text-xs sm:text-sm text-gray-600 mb-2 block">
                 {audition.type}
               </span>
-              <h3 className="text-xl font-semibold mb-4">{audition.title}</h3>
-              <button className="bg-white text-gray-700 px-4 py-2 rounded-full text-sm mb-4">
+              <h3 className="text-lg sm:text-xl font-semibold mb-4">
+                {audition.title}
+              </h3>
+              <button className="bg-white text-gray-700 px-4 py-2 rounded-full text-xs sm:text-sm mb-4">
                 {audition.roles > 1
                   ? `View all ${audition.roles} roles`
                   : "View role"}
               </button>
-              <p className="text-sm text-gray-600">
+              <p className="text-xs sm:text-sm text-gray-600">
                 Posted on: {audition.date}
               </p>
             </div>
@@ -201,42 +205,34 @@ const MainHome = () => {
         </div>
       </div>
 
-      {/* Category  */}
-
       <Category />
-
-      {/* Partner */}
-
       <Partner />
 
-      {/* Testomonial */}
-
-      <div className="bg-gray-900  text-white p-8 flex items-center justify-between">
-        <div className="flex flex-col items-center space-x-8 max-w-4xl">
-          <div className="w-32 h-32 rounded-full overflow-hidden flex-shrink-0">
+      <div className="bg-gray-900 text-white p-6 sm:p-8">
+        <div className="flex flex-col sm:flex-row items-center max-w-4xl mx-auto">
+          <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden flex-shrink-0 mb-4 sm:mb-0">
             <img
               src="https://www.talentrack.in/uploads/testimonial_images/775aed02-5b01-4914-24a4-99d4e946412b.jpg"
               alt="Maanvi Gagroo"
               className="w-full h-full object-cover"
             />
           </div>
+          <div className="flex flex-col space-y-4 sm:ml-8 text-center sm:text-left">
+            <div className="text-orange-500 text-3xl sm:text-4xl">"</div>
+            <p className="text-base sm:text-lg">
+              I believe Talentrack is the first of its kind in our country.
+              Talentrack Awards are such an incredible act of encouragement. In
+              a way, it's shaping the web content in the Indian milieu.
+            </p>
+            <div className="text-orange-500 font-bold">
+              Maanvi Gagroo, Actor
+            </div>
+            <span className="text-white text-base sm:text-lg font-bold cursor-pointer">
+              View All &gt;
+            </span>
+          </div>
         </div>
-
-        <div className=" flex flex-col space-y-4 p-3 ml-[6vh]">
-          <div className="text-orange-500  text-4xl">"</div>
-          <p className="text-lg">
-            I believe Talentrack is the first of its kind in our country.
-            Talentrack Awards are such an incredible act of encouragement. In a
-            way, it's shaping the web content in the Indian milieu.
-          </p>
-          <div className="text-orange-500 font-bold">Maanvi Gagroo, Actor</div>
-          <span className="text-white text-lg font-bold whitespace-nowrap">
-            View All &gt;
-          </span>
-        </div>
-        {/* Adjust the span styling */}
       </div>
-      {/* New */}
     </div>
   );
 };

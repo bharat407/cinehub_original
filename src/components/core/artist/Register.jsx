@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import Navbar from "../../common/Navbar";
-import ParentalConsentForm from "./ParentalConsent"; // Ensure the correct path
-import CategorySelectionScreen from "./Category"; // Ensure the correct path
+import ParentalConsentForm from "./ParentalConsent";
+import CategorySelectionScreen from "./Category";
 
 const TalentPlatform = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -42,13 +42,6 @@ const TalentPlatform = () => {
   const nextSlide = () => {
     setCurrentRecruiterIndex(
       (prevIndex) => (prevIndex + recruitersPerSlide) % recruiters.length
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentRecruiterIndex(
-      (prevIndex) =>
-        (prevIndex - recruitersPerSlide + recruiters.length) % recruiters.length
     );
   };
 
@@ -247,7 +240,6 @@ const TalentPlatform = () => {
             <div className="fixed inset-0 mt-[-10vh] h-[100vh] flex items-center justify-center z-50">
               <div className=" p-8">
                 <CategorySelectionScreen />
-              
               </div>
             </div>
           )}

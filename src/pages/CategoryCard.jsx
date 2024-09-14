@@ -57,8 +57,8 @@ const CategoryCard = ({ name, image, color }) => (
 
 const AuditionCategories = () => (
   <div className="max-w-4xl mx-auto p-6">
-    <h2 className="text-2xl font-bold mb-4">Browse Auditions by Category</h2>
-    <div className="grid grid-cols-3 gap-4">
+    <h2 className="text-2xl text-center font-bold mb-4">Browse Auditions by Category</h2>
+    <div className=" flex flex-col items-center justify-center md:grid grid-cols-3 gap-4">
       {categories.map((category) => (
         <CategoryCard key={category.name} {...category} />
       ))}

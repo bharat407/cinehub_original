@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Upload, X } from "lucide-react";
+import { Upload } from "lucide-react";
 import { FaTimes } from "react-icons/fa";
 
 const ParentalConsentForm = ({ onClose }) => {

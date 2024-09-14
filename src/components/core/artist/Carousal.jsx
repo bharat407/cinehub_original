@@ -57,7 +57,7 @@ const ProjectSlider = () => {
           {projects
             .slice(currentIndex, currentIndex + 2)
             .map((project, index) => (
-              <div key={index} className="w-1/2 px-4">
+              <div key={index} className="w-full md:w-1/2 px-4">
                 <div className="bg-white shadow-lg rounded-lg p-6">
                   <h3 className="text-gray-600 font-semibold mb-2">
                     {project.type}
@@ -93,3 +93,26 @@ const ProjectSlider = () => {
 };
 
 export default ProjectSlider;
+
+// Add this CSS in your stylesheet or in a style tag
+const styles = `
+@media (max-width: 768px) {
+  .flex.overflow-hidden {
+    flex-direction: column;
+  }
+
+  .w-full.md\\:w-1\\/2 {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  h2.text-2xl {
+    font-size: 1.5rem;
+  }
+
+  .w-8.h-8 {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+`;
