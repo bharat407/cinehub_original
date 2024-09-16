@@ -45,11 +45,11 @@ const MainHome = () => {
         <Navbar />
       </div>
 
-      <div>
+      <div className="">
         <Carousal />
       </div>
 
-      <div className="max-w-4xl mt-[-60vh] md:mt-0 mx-auto p-4 sm:p-6 bg-white">
+      <div className="max-w-4xl mt-[10vh] md:mt-0 mx-auto p-4 sm:p-6 bg-white">
         <h1 className="text-3xl sm:text-5xl font-bold mb-4 text-center">
           Find your dream role on CineHub
         </h1>

@@ -32,7 +32,7 @@ const Navbar = () => {
     <div>
       <div className="fixed top-0 inset-x-0 w-full text-center border-b-2 border-gray-300 shadow-md bg-white py-4 z-50">
         <div className="container mx-auto px-4">
-          <div className="flex justify-evenly items-center">
+          <div className="flex justify-between items-center">
             <NavLink to="/" className="text-2xl font-medium text-[#d10001]">
               CineHub
             </NavLink>

@@ -37,7 +37,7 @@ const Carousel = () => {
   return (
     <div
       id="default-carousel"
-      className="relative w-full"
+      className="relative w-full hidden md:block"
       data-carousel="slide"
     >
       {/* Carousel Wrapper */}
@@ -52,7 +52,7 @@ const Carousel = () => {
           >
             <img
               src={image}
-              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-[27vh] md:top-80 left-1/2"
+              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-[12vh] md:top-80 left-1/2"
               alt={`Slide ${index + 1}`}
             />
           </div>
@@ -62,7 +62,7 @@ const Carousel = () => {
       {/* Left Arrow */}
       <button
         onClick={prevSlide}
-        className="absolute top-[25vh] md:top-1/2 left-4 z-30 flex items-center justify-center h-10 w-10 rounded-full bg-white/50 hover:bg-white/70 focus:ring-4 focus:ring-white -translate-y-1/2"
+        className="absolute top-[12vh] md:top-1/2 left-4 z-30 flex items-center justify-center h-10 w-10 rounded-full bg-white/50 hover:bg-white/70 focus:ring-4 focus:ring-white -translate-y-1/2"
       >
         <FiChevronLeft className="w-6 h-6 text-black" />
       </button>
@@ -70,13 +70,13 @@ const Carousel = () => {
       {/* Right Arrow */}
       <button
         onClick={nextSlide}
-        className="absolute top-[25vh] md:top-1/2 right-4 z-30 flex items-center justify-center h-10 w-10 rounded-full bg-white/50 hover:bg-white/70 focus:ring-4 focus:ring-white -translate-y-1/2"
+        className="absolute top-[12vh] md:top-1/2 right-4 z-30 flex items-center justify-center h-10 w-10 rounded-full bg-white/50 hover:bg-white/70 focus:ring-4 focus:ring-white -translate-y-1/2"
       >
         <FiChevronRight className="w-6 h-6 text-black" />
       </button>
 
       {/* Dots Indicators */}
-      <div className="absolute top-[35vh] md:top-[90vh] z-30 flex space-x-3 bottom-[10vh] left-1/2 transform -translate-x-1/2">
+      <div className="absolute top-[15vh] md:top-[90vh] z-30 flex space-x-3  left-1/2 transform -translate-x-1/2">
         {images.map((_, index) => (
           <button
             key={index}
