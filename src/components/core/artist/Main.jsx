@@ -31,20 +31,27 @@ const Artist = () => {
   }, []);
 
   return (
-    <div className="artist-container">
+    <div className="artist-container min-h-screen bg-gray-100">
       <Navbar />
-      <div className="">
-        <div className="relative ">
-          <div className="relative hidden md:block cursor-pointer  justify-around bg-gray-100">
-            <div className="banner-text ml-[50vh] mt-[10vh] absolute top-[15vh] sm:top-[20vh] md:top-[25vh] lg:top-[30vh] transform -translate-x-1/4 -translate-y-1/2 text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal z-10 text-left flex flex-col items-start">
-              <h3>Over</h3>
-              <h2 className="font-medium">7,00,000</h2>
-              <h3>Self-registered</h3>
-              <h3>Artists &amp; Counting...</h3>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative">
+          <div className="relative hidden md:block">
+            <div className="banner-text absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 text-white z-10 text-left">
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-light mb-2">
+                Over
+              </h3>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-2">
+                7,00,000
+              </h2>
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-light">
+                Self-registered
+              </h3>
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-light">
+                Artists &amp; Counting...
+              </h3>
             </div>
-
             <img
-              className="w-full mt-[12vh] h-auto"
+              className="w-full h-auto object-cover"
               src={Banner}
               alt="Enhance your Casting & Talent-Management operations with Talentrack, KNOW MORE"
             />
@@ -57,54 +64,56 @@ const Artist = () => {
         </div>
 
         {showContinue && (
-          <div className="fixed bottom-0 left-0 w-full bg-[#d10001] shadow-lg p-2 flex flex-col sm:flex-row justify-evenly items-center z-50">
-            <span className="text-white text-lg sm:text-xl md:text-2xl font-medium mb-2 sm:mb-0 sm:mr-4 text-center sm:text-left">
+          <div className="fixed bottom-0 left-0 w-full bg-red-600 shadow-lg p-4 flex flex-col sm:flex-row justify-between items-center z-50">
+            <span className="text-white text-xl sm:text-2xl font-medium mb-4 sm:mb-0 text-center sm:text-left">
               Fast-track your Career in the media & entertainment industry
             </span>
-            <span
-              className="text-lg sm:text-xl md:text-2xl uppercase font-semibold bg-white border border-solid py-2 px-4 rounded-md text-[#d10001] cursor-pointer"
+            <button
+              className="text-xl sm:text-2xl uppercase font-semibold bg-white text-red-600 py-2 px-6 rounded-md transition duration-300 ease-in-out hover:bg-red-100"
               onClick={handleNavigateToForm}
             >
               Register now
-            </span>
+            </button>
           </div>
         )}
 
-        <div className="relative">
+
+
+        {/* <div className="relative mt-12 mb-24">
           <img
             src={logo}
-            className="h-[50vh] sm:h-[60vh] md:h-[70vh] w-full object-cover"
+            className="h-[60vh] sm:h-[70vh] md:h-[80vh] w-full object-cover rounded-lg shadow-xl"
             alt="Talentrack banner"
           />
-          <div className="absolute inset-0 flex">
-            <div className="w-full sm:w-2/3 p-4 sm:p-8 flex flex-col justify-center">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-black">
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center rounded-lg">
+            <div className="w-full sm:w-2/3 p-8 sm:p-12">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white">
                 Download the
                 <br />
-                <span className="text-red-600">Talentrack</span> App
+                <span className="text-red-500">Talentrack</span> App
               </h1>
-              <p className="text-base sm:text-lg mb-6 text-black">
+              <p className="text-lg sm:text-xl mb-8 text-white">
                 Life is mobile so are you!
                 <br />
                 We are 2x faster on the app. Explore hundreds
                 <br className="hidden sm:block" />
                 of opportunities & discounts
               </p>
-              <div className="flex space-x-4">
+              <div className="flex space-x-6">
                 <img
-                  src="/api/placeholder/120/40"
+                  src="/api/placeholder/160/60"
                   alt="Google Play"
-                  className="h-8 sm:h-10"
+                  className="h-12 sm:h-14 rounded-md shadow-md transition duration-300 ease-in-out hover:shadow-lg"
                 />
                 <img
-                  src="/api/placeholder/120/40"
+                  src="/api/placeholder/160/60"
                   alt="App Store"
-                  className="h-8 sm:h-10"
+                  className="h-12 sm:h-14 rounded-md shadow-md transition duration-300 ease-in-out hover:shadow-lg"
                 />
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
