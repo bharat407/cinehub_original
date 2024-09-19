@@ -60,12 +60,12 @@ const Navbar = () => {
                 Projects
               </NavLink>
               {/* <DropdownMenu title="Hire Artists" items={hireArtistsItems} /> */}
-              <NavLink
+              {/* <NavLink
                 to="/agency"
                 className="hover:text-[#ff6347] transition-all ease-in"
               >
                 Talent Agencies
-              </NavLink>
+              </NavLink> */}
               <NavLink
                 to="/cms/brandcollaboration"
                 className="hover:text-[#ff6347] transition-all ease-in"

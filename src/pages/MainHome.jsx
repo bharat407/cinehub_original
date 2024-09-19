@@ -43,11 +43,11 @@ const MainHome = () => {
     <div className="font-sans">
       <Navbar />
 
-      <div className="w-full">
+      <div className="w-full hidden md:block">
         <Carousal />
       </div>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="max-w-7xl mt-7 md:mt-0 mx-auto px-4 sm:px-6 lg:px-8">
         <section className="py-12 sm:py-16 lg:py-20 text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             Find your dream role on CineHub

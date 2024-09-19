@@ -111,7 +111,7 @@ const Home = () => {
 
       {/* Banner */}
 
-      <div className="p-4 mt-[12vh] cursor-pointer flex justify-center bg-gray-100">
+      <div className="p-4 mt-12 cursor-pointer flex justify-center bg-gray-100">
         <img
           className="w-full max-w-4xl h-auto"
           src="https://www.talentrack.in/images/application/modules/default/rec_reg/banner.svg"
