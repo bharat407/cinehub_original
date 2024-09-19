@@ -46,7 +46,7 @@ const Carousel = () => {
   const images = [Main, Second, Third];
 
   return (
-    <div className="w-full mt-[13vh] md:mt-[12vh]">
+    <div className="w-full mt-[7vh] md:mt-[10vh]">
       <Slider {...settings}>
         {images.map((img, index) => (
           <div key={index} className="">
