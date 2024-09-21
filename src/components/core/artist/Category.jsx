@@ -7,7 +7,6 @@ import {
   CheckIcon,
   ChevronDownIcon,
 } from "lucide-react";
-
 import {
   FaCamera,
   FaMicrophone,
@@ -60,13 +59,6 @@ const categories = [
 const CategorySelectionScreen = () => {
   const [step, setStep] = useState(1);
   const dateInputRef = useRef(null);
-
-  const handleCalendarClick = () => {
-    if (dateInputRef.current) {
-      dateInputRef.current.showPicker();
-    }
-  };
-  // Track current step
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [formData, setFormData] = useState({
@@ -97,6 +89,21 @@ const CategorySelectionScreen = () => {
       alert("Please select a category to proceed.");
       return;
     }
+    if (step === 2) {
+      const { dob, languages, address, city, state, zipcode } = formData;
+      if (!dob || !languages || !address || !city || !state || !zipcode) {
+        alert("Please fill in all personal information fields.");
+        return;
+      }
+    }
+    if (step === 3 && !currentLocation && !customLocation) {
+      alert("Please select or enter your current location.");
+      return;
+    }
+    if (step === 3 && workLocations.length === 0 && !customWorkLocation) {
+      alert("Please select or enter at least one work location.");
+      return;
+    }
     setStep((prevStep) => Math.min(prevStep + 1, 4));
   };
 
@@ -113,9 +120,30 @@ const CategorySelectionScreen = () => {
   };
 
   const handleSubmit = () => {
-    // Handle form submission here
+    // Additional validation on submit
+    const { dob, languages, address, city, state, zipcode } = formData;
+    if (
+      !selectedCategory ||
+      !dob ||
+      !languages ||
+      !address ||
+      !city ||
+      !state ||
+      !zipcode
+    ) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
+    if (!currentLocation && !customLocation) {
+      alert("Please select or enter your current location.");
+      return;
+    }
+    if (workLocations.length === 0 && !customWorkLocation) {
+      alert("Please select or enter at least one work location.");
+      return;
+    }
+
     console.log("Form Data Submitted:", { selectedCategory, ...formData });
-    // Close the modal or perform other actions as needed
     setIsModalOpen(false);
     alert("Form submitted successfully!");
   };
@@ -125,10 +153,8 @@ const CategorySelectionScreen = () => {
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
-      {/* Modal Content */}
+    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg md:max-w-2xl lg:max-w-3xl max-h-[90vh] overflow-y-auto relative p-4 sm:p-6 md:p-8">
-        {/* Close Button */}
         <button
           onClick={() => setIsModalOpen(false)}
           className="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-500 hover:text-gray-700 focus:outline-none"
@@ -137,14 +163,11 @@ const CategorySelectionScreen = () => {
           <FaTimes size={20} />
         </button>
 
-        {/* Title */}
         <h1 className="text-2xl sm:text-3xl font-bold text-red-600 mb-6 text-center">
           PERSONAL INFO & MEMBERSHIP
         </h1>
 
-        {/* Progress Steps */}
         <div className="flex justify-between items-center mb-8">
-          {/* Step 1: Category */}
           <div className="flex flex-col items-center">
             <div
               className={`w-10 h-10 ${
@@ -163,7 +186,6 @@ const CategorySelectionScreen = () => {
           </div>
           <div className="flex-1 h-0.5 bg-gray-300 mx-2"></div>
 
-          {/* Step 2: Personal */}
           <div className="flex flex-col items-center">
             <div
               className={`w-10 h-10 ${
@@ -182,7 +204,6 @@ const CategorySelectionScreen = () => {
           </div>
           <div className="flex-1 h-0.5 bg-gray-300 mx-2"></div>
 
-          {/* Step 3: Location */}
           <div className="flex flex-col items-center">
             <div
               className={`w-10 h-10 ${
@@ -201,7 +222,6 @@ const CategorySelectionScreen = () => {
           </div>
           <div className="flex-1 h-0.5 bg-gray-300 mx-2"></div>
 
-          {/* Step 4: Finish */}
           <div className="flex flex-col items-center">
             <div
               className={`w-10 h-10 ${
@@ -220,9 +240,7 @@ const CategorySelectionScreen = () => {
           </div>
         </div>
 
-        {/* Step Content */}
         <div className="space-y-6">
-          {/* Step 1: Category Selection */}
           {step === 1 && (
             <div>
               <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 mb-4 text-center">
@@ -240,19 +258,17 @@ const CategorySelectionScreen = () => {
                       }`}
                       onClick={() => setSelectedCategory(category.name)}
                     >
-                      <div
-                        className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 flex items-center justify-center mb-2 transition 
-                        ${
-                          isSelected
-                            ? "border-red-600 bg-red-100"
-                            : "border-gray-300 bg-gray-100"
+                      <IconComponent
+                        className={`mb-2 text-4xl ${
+                          isSelected ? "text-red-600" : "text-gray-400"
                         }`}
-                      >
-                        <IconComponent size={24} />
-                      </div>
-                      <span className="text-sm sm:text-base text-center">
-                        {category.name}
-                      </span>
+                      />
+                      <span>{category.name}</span>
+                      {isSelected && (
+                        <div className="mt-1 text-sm text-red-600">
+                          Selected
+                        </div>
+                      )}
                     </div>
                   );
                 })}
@@ -260,163 +276,150 @@ const CategorySelectionScreen = () => {
             </div>
           )}
 
-          {/* Step 2: Personal Information */}
           {step === 2 && (
             <div>
               <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 mb-4 text-center">
-                PERSONAL INFORMATION
+                PERSONAL INFO
               </h2>
               <div className="space-y-4">
-                {/* Date of Birth */}
                 <div>
-                  <label
-                    htmlFor="dob"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
+                  <label htmlFor="dob" className="block text-gray-600 mb-1">
                     Date of Birth
                   </label>
-                  <div className="relative">
-                    <input
-                      type="date"
-                      id="dob"
-                      ref={dateInputRef}
-                      value={formData.dob}
-                      onChange={handleInputChange}
-                      className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-red-500"
-                    />
-                    <CalendarIcon
-                      className="absolute right-3 top-2.5 text-gray-400 cursor-pointer"
-                      size={20}
-                      onClick={handleCalendarClick}
-                    />
-                  </div>
+                  <input
+                    type="date"
+                    id="dob"
+                    ref={dateInputRef}
+                    value={formData.dob}
+                    onChange={handleInputChange}
+                    className="border border-gray-300 rounded-md p-2 w-full"
+                    required
+                  />
                 </div>
-
-                {/* Languages You Speak */}
                 <div>
                   <label
                     htmlFor="languages"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-gray-600 mb-1"
                   >
-                    Languages You Speak
+                    Languages
                   </label>
-                  <div className="relative">
-                    <select
-                      id="languages"
-                      value={formData.languages}
+                  <input
+                    type="text"
+                    id="languages"
+                    value={formData.languages}
+                    onChange={handleInputChange}
+                    placeholder="Enter languages you speak"
+                    className="border border-gray-300 rounded-md p-2 w-full"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="address" className="block text-gray-600 mb-1">
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    id="address"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    placeholder="Enter your address"
+                    className="border border-gray-300 rounded-md p-2 w-full"
+                    required
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="city" className="block text-gray-600 mb-1">
+                      City
+                    </label>
+                    <input
+                      type="text"
+                      id="city"
+                      value={formData.city}
                       onChange={handleInputChange}
-                      className="w-full border border-gray-300 rounded-md py-2 px-3 appearance-none focus:outline-none focus:ring-1 focus:ring-red-500"
-                    >
-                      <option value="">Select Language</option>
-                      <option value="English">English</option>
-                      <option value="Spanish">Spanish</option>
-                      <option value="French">French</option>
-                      <option value="German">German</option>
-                      <option value="Hindi">Hindi</option>
-                      {/* Add more language options as needed */}
-                    </select>
-                    <ChevronDownIcon
-                      className="absolute right-3 top-2.5 text-gray-400"
-                      size={20}
+                      className="border border-gray-300 rounded-md p-2 w-full"
+                      required
                     />
                   </div>
+                  <div>
+                    <label htmlFor="state" className="block text-gray-600 mb-1">
+                      State
+                    </label>
+                    <input
+                      type="text"
+                      id="state"
+                      value={formData.state}
+                      onChange={handleInputChange}
+                      className="border border-gray-300 rounded-md p-2 w-full"
+                      required
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="zipcode" className="block text-gray-600 mb-1">
+                    Zipcode
+                  </label>
+                  <input
+                    type="text"
+                    id="zipcode"
+                    value={formData.zipcode}
+                    onChange={handleInputChange}
+                    className="border border-gray-300 rounded-md p-2 w-full"
+                    required
+                  />
                 </div>
               </div>
             </div>
           )}
 
-          {/* Step 3: Location Information */}
           {step === 3 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 mb-4 text-center">
+                LOCATION
+              </h2>
               <div>
-                <h2 className="text-xl font-bold mb-4">
-                  Where are you located?
-                </h2>
-                <p className="font-semibold mb-2">SELECT FROM TOP LOCATIONS</p>
-                <div className="grid grid-cols-2 gap-4">
-                  {topLocations.map((location) => (
-                    <label
-                      key={location}
-                      className="flex items-center space-x-2"
-                    >
-                      <input
-                        type="radio"
-                        name="currentLocation"
-                        value={location}
-                        checked={currentLocation === location}
-                        onChange={() => setCurrentLocation(location)}
-                        className="form-radio text-red-600"
-                      />
-                      <span>{location}</span>
-                    </label>
-                  ))}
-                </div>
-                <p className="font-semibold mt-4 mb-2">OR FIND YOUR LOCATION</p>
+                <label className="block text-gray-600 mb-2">
+                  Current Location
+                </label>
                 <input
                   type="text"
-                  value={customLocation}
-                  onChange={(e) => setCustomLocation(e.target.value)}
-                  className="w-full border border-gray-300 rounded p-2"
-                  placeholder="Enter your location"
+                  value={currentLocation}
+                  onChange={(e) => setCurrentLocation(e.target.value)}
+                  placeholder="Enter current location"
+                  className="border border-gray-300 rounded-md p-2 w-full mb-4"
                 />
-              </div>
-
-              <div>
-                <h2 className="text-xl font-bold mb-4">
-                  Where are you available for work?
-                </h2>
-                <label className="flex items-center space-x-2 mb-4">
-                  <input
-                    type="checkbox"
-                    checked={workLocations.includes("Anywhere in India")}
-                    onChange={() =>
-                      handleWorkLocationChange("Anywhere in India")
-                    }
-                    className="form-checkbox text-red-600"
-                  />
-                  <span>Anywhere in India</span>
-                </label>
-                <p className="font-semibold mb-2">
-                  OR SELECT FROM TOP LOCATIONS
-                </p>
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    "Delhi NCR",
-                    "Mumbai",
-                    "Chennai",
-                    "Kolkata",
-                    "Hyderabad",
-                    "Bangalore",
-                  ].map((location) => (
-                    <label
-                      key={location}
-                      className="flex items-center space-x-2"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={workLocations.includes(location)}
-                        onChange={() => handleWorkLocationChange(location)}
-                        className="form-checkbox text-red-600"
-                      />
-                      <span>{location}</span>
-                    </label>
-                  ))}
+                <div>
+                  <label className="block text-gray-600 mb-2">
+                    Top Locations
+                  </label>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {topLocations.map((location) => (
+                      <div key={location} className="flex items-center">
+                        <input
+                          type="checkbox"
+                          id={location}
+                          checked={workLocations.includes(location)}
+                          onChange={() => handleWorkLocationChange(location)}
+                          className="mr-2"
+                        />
+                        <label htmlFor={location} className="text-gray-600">
+                          {location}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <p className="font-semibold mt-4 mb-2">
-                  OR FIND AND ADD LOCATION(S)
-                </p>
                 <input
                   type="text"
                   value={customWorkLocation}
                   onChange={(e) => setCustomWorkLocation(e.target.value)}
-                  className="w-full border border-gray-300 rounded p-2"
-                  placeholder="Enter work locations"
+                  placeholder="Add custom work location"
+                  className="border border-gray-300 rounded-md p-2 w-full mt-4"
                 />
               </div>
             </div>
           )}
 
-          {/* Step 4: Finish */}
           {step === 4 && (
             <div>
               <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 mb-4 text-center">
@@ -449,13 +452,18 @@ const CategorySelectionScreen = () => {
 
                 {/* Address */}
                 <div>
-                  <h3 className="text-md font-medium text-gray-700">
+                  <h3 className="text-md font-medium text-gray-800">
                     Address:
                   </h3>
-                  <p className="text-gray-600">{formData.address}</p>
+                  <p className=" text-gray-600">{formData.address}</p>
+                  <p className="text-md font-medium text-gray-800">City: </p>
+                  <p className="text-gray-600"> {formData.city}</p>
+                  <p className="text-md font-medium text-gray-800">State: </p>
+                  <p className="text-gray-600"> {formData.state}</p>
+                  <p className="text-md font-medium text-gray-800">PinCode: </p>
+                  <p className="text-gray-600"> {formData.zipcode}</p>
                 </div>
 
-                {/* City */}
                 <div>
                   <h3 className="text-md font-medium text-gray-700">
                     Current Location:
@@ -477,32 +485,20 @@ const CategorySelectionScreen = () => {
           )}
         </div>
 
-        {/* Navigation Buttons */}
         <div className="flex justify-between mt-6">
-          {step > 1 && (
-            <button
-              onClick={handleBack}
-              className="px-4 py-2 sm:px-6 sm:py-3 bg-gray-800 text-white text-sm sm:text-base rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-150 ease-in-out"
-            >
-              Back
-            </button>
-          )}
-          {step < 4 && (
-            <button
-              onClick={handleNext}
-              className="ml-auto px-4 py-2 sm:px-6 sm:py-3 bg-red-600 text-white text-sm sm:text-base rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out"
-            >
-              Next
-            </button>
-          )}
-          {step === 4 && (
-            <button
-              onClick={handleSubmit}
-              className="ml-auto px-4 py-2 sm:px-6 sm:py-3 bg-green-600 text-white text-sm sm:text-base rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-150 ease-in-out"
-            >
-              Submit
-            </button>
-          )}
+          <button
+            onClick={handleBack}
+            disabled={step === 1}
+            className="px-4 py-2 bg-gray-300 rounded-md text-gray-700 hover:bg-gray-400 disabled:opacity-50"
+          >
+            Back
+          </button>
+          <button
+            onClick={step === 4 ? handleSubmit : handleNext}
+            className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+          >
+            {step === 4 ? "Submit" : "Next"}
+          </button>
         </div>
       </div>
     </div>

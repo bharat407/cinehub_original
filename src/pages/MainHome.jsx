@@ -43,7 +43,7 @@ const MainHome = () => {
     <div className="font-sans">
       <Navbar />
 
-      <div className="w-full">
+      <div className="w-full md:mt-0 mt-[5vh]">
         <Carousal />
       </div>
 

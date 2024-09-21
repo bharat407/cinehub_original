@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import Navbar from "../../common/Navbar";
@@ -8,9 +7,17 @@ import CategorySelectionScreen from "./Category";
 const TalentPlatform = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [currentRecruiterIndex, setCurrentRecruiterIndex] = useState(0);
-  const [ageCategory, setAgeCategory] = useState("");
   const [showConsentForm, setShowConsentForm] = useState(false);
   const [showCategorySelection, setShowCategorySelection] = useState(false);
+  const [formData, setFormData] = useState({
+    title: "",
+    name: "",
+    email: "",
+    mobile: "",
+    password: "",
+    ageCategory: "",
+  });
+  const [formErrors, setFormErrors] = useState({});
 
   const recruiters = [
     {
@@ -46,16 +53,44 @@ const TalentPlatform = () => {
     );
   };
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   const handleAgeChange = (selected) => {
-    setAgeCategory(selected);
+    setFormData((prevData) => ({
+      ...prevData,
+      ageCategory: selected,
+    }));
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    if (!formData.title) errors.title = "Please select a title";
+    if (!formData.name) errors.name = "Name is required";
+    if (!formData.email) errors.email = "Email is required";
+    if (!formData.mobile) errors.mobile = "Mobile number is required";
+    if (!formData.password) errors.password = "Password is required";
+    if (!formData.ageCategory)
+      errors.ageCategory = "Please select an age category";
+    return errors;
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (ageCategory === "below18") {
-      setShowConsentForm(true);
-    } else {
-      setShowCategorySelection(true);
+    const errors = validateForm();
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      if (formData.ageCategory === "below18") {
+        setShowConsentForm(true);
+      } else {
+        setShowCategorySelection(true);
+      }
     }
   };
 
@@ -109,30 +144,74 @@ const TalentPlatform = () => {
                 <form onSubmit={handleSubmit}>
                   <div className="flex space-x-4 mb-4">
                     <label className="flex items-center text-sm md:text-base">
-                      <input type="radio" name="title" className="mr-2" /> Mr.
+                      <input
+                        type="radio"
+                        name="title"
+                        value="Mr."
+                        checked={formData.title === "Mr."}
+                        onChange={handleInputChange}
+                        className="mr-2"
+                      />{" "}
+                      Mr.
                     </label>
                     <label className="flex items-center text-sm md:text-base">
-                      <input type="radio" name="title" className="mr-2" /> Ms.
+                      <input
+                        type="radio"
+                        name="title"
+                        value="Ms."
+                        checked={formData.title === "Ms."}
+                        onChange={handleInputChange}
+                        className="mr-2"
+                      />{" "}
+                      Ms.
                     </label>
                   </div>
+                  {formErrors.title && (
+                    <p className="text-red-500 text-sm">{formErrors.title}</p>
+                  )}
+
                   <input
                     type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
                     placeholder="Name"
                     className="w-full p-2 border rounded mb-4 text-sm md:text-base"
                   />
+                  {formErrors.name && (
+                    <p className="text-red-500 text-sm">{formErrors.name}</p>
+                  )}
+
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     placeholder="Email"
                     className="w-full p-2 border rounded mb-4 text-sm md:text-base"
                   />
+                  {formErrors.email && (
+                    <p className="text-red-500 text-sm">{formErrors.email}</p>
+                  )}
+
                   <input
                     type="tel"
+                    name="mobile"
+                    value={formData.mobile}
+                    onChange={handleInputChange}
                     placeholder="Mobile"
                     className="w-full p-2 border rounded mb-4 text-sm md:text-base"
                   />
+                  {formErrors.mobile && (
+                    <p className="text-red-500 text-sm">{formErrors.mobile}</p>
+                  )}
+
                   <div className="relative">
                     <input
                       type={showPassword ? "text" : "password"}
+                      name="password"
+                      value={formData.password}
+                      onChange={handleInputChange}
                       placeholder="Password"
                       className="w-full p-2 border rounded mb-4 text-sm md:text-base"
                     />
@@ -148,11 +227,19 @@ const TalentPlatform = () => {
                       )}
                     </button>
                   </div>
+                  {formErrors.password && (
+                    <p className="text-red-500 text-sm">
+                      {formErrors.password}
+                    </p>
+                  )}
+
                   <div className="mb-4">
                     <label className="cursor-pointer items-center mb-2 text-sm md:text-base">
                       <input
                         type="radio"
-                        checked={ageCategory === "above18"}
+                        name="ageCategory"
+                        value="above18"
+                        checked={formData.ageCategory === "above18"}
                         onChange={() => handleAgeChange("above18")}
                         className="mr-2"
                       />
@@ -166,13 +253,21 @@ const TalentPlatform = () => {
                     <label className="flex cursor-pointer items-center text-sm md:text-base">
                       <input
                         type="radio"
-                        checked={ageCategory === "below18"}
+                        name="ageCategory"
+                        value="below18"
+                        checked={formData.ageCategory === "below18"}
                         onChange={() => handleAgeChange("below18")}
                         className="mr-2"
                       />
                       I am below 18
                     </label>
                   </div>
+                  {formErrors.ageCategory && (
+                    <p className="text-red-500 text-sm">
+                      {formErrors.ageCategory}
+                    </p>
+                  )}
+
                   <button
                     type="submit"
                     className="bg-red-600 text-white px-4 md:px-6 py-2 rounded-full mx-auto block text-sm md:text-base"
