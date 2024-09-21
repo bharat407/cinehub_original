@@ -1,12 +1,6 @@
 import React, { useState, useRef } from "react";
-import {
-  CalendarIcon,
-  GridIcon,
-  UserIcon,
-  MapPinIcon,
-  CheckIcon,
-  ChevronDownIcon,
-} from "lucide-react";
+import { GridIcon, UserIcon, MapPinIcon, CheckIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import {
   FaCamera,
   FaMicrophone,
@@ -118,9 +112,13 @@ const CategorySelectionScreen = () => {
       [id]: value,
     }));
   };
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     // Additional validation on submit
+
+    navigate("/");
+
     const { dob, languages, address, city, state, zipcode } = formData;
     if (
       !selectedCategory ||
