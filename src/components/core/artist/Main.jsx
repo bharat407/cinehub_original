@@ -5,7 +5,6 @@ import Carousal from "./Carousal";
 import Testomonial from "./Testomonial";
 import Brand from "./Brand";
 import Banner from "../../../assets/banner.avif";
-import logo from "../../../assets/CineHub.png";
 import Navbar from "../../common/Navbar";
 
 const Artist = () => {
@@ -76,44 +75,6 @@ const Artist = () => {
             </button>
           </div>
         )}
-
-
-
-        {/* <div className="relative mt-12 mb-24">
-          <img
-            src={logo}
-            className="h-[60vh] sm:h-[70vh] md:h-[80vh] w-full object-cover rounded-lg shadow-xl"
-            alt="Talentrack banner"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center rounded-lg">
-            <div className="w-full sm:w-2/3 p-8 sm:p-12">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white">
-                Download the
-                <br />
-                <span className="text-red-500">Talentrack</span> App
-              </h1>
-              <p className="text-lg sm:text-xl mb-8 text-white">
-                Life is mobile so are you!
-                <br />
-                We are 2x faster on the app. Explore hundreds
-                <br className="hidden sm:block" />
-                of opportunities & discounts
-              </p>
-              <div className="flex space-x-6">
-                <img
-                  src="/api/placeholder/160/60"
-                  alt="Google Play"
-                  className="h-12 sm:h-14 rounded-md shadow-md transition duration-300 ease-in-out hover:shadow-lg"
-                />
-                <img
-                  src="/api/placeholder/160/60"
-                  alt="App Store"
-                  className="h-12 sm:h-14 rounded-md shadow-md transition duration-300 ease-in-out hover:shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import castingData from "../../../data/castingData";
 import Video from "./Videocard";
 import Testimonial from "./Testimonial";
-import Recruiter from "../../models/Recruiter";
+// import Recruiter from "../../models/Recruiter";
 import Navbar from "../../common/Navbar";
 
 const benefitsData = [
@@ -45,7 +45,7 @@ const categories = [
 ];
 
 const Home = () => {
-  const [showRecruiterModal, setShowRecruiterModal] = useState(false);
+  // const [showRecruiterModal, setShowRecruiterModal] = useState(false);
   const [isChecked, setIsChecked] = useState(true);
   const formRef = useRef(null);
   const [showContinue, setShowContinue] = useState(true);
@@ -92,18 +92,6 @@ const Home = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowRecruiterModal(true);
-    }, 5000); // Modal opens after 5 seconds
-
-    return () => clearTimeout(timer); // Cleanup the timer when the component is unmounted
-  }, []);
-
-  const closeModal = () => {
-    setShowRecruiterModal(false);
-  };
 
   return (
     <>
@@ -389,20 +377,6 @@ const Home = () => {
             </div>
           </form>
         </div>
-
-        {showRecruiterModal && (
-          <div className="fixed inset-0 mt-[20vh] flex items-center justify-center">
-            <div className="relative">
-              <button
-                onClick={closeModal}
-                className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
-              >
-                &times;
-              </button>
-              <Recruiter />
-            </div>
-          </div>
-        )}
       </div>
     </>
   );
