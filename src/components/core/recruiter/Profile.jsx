@@ -3,7 +3,7 @@ import Form from "./form"
 
 const UserProfile = () => {
   return (
-    <div className="max-w-3xl mx-auto p-4 bg-white shadow-lg">
+    <div className="max-w-6xl mx-auto p-4 ">
       <div className="flex flex-col md:flex-row">
         {/* Profile Image */}
         <div className="w-full md:w-1/2 bg-red-400 aspect-square">
