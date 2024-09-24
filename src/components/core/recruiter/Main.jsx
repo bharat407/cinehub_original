@@ -369,7 +369,7 @@ const Home = () => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="bg-[#d10001] text-white px-6 py-2 rounded-3xl disabled:bg-gray-400"
+                className="bg-[#d10001] cursor-pointer text-white px-6 py-2 rounded-3xl "
                 disabled={!formData.iAgree}
               >
                 SUBMIT

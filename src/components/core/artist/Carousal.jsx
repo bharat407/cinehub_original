@@ -15,7 +15,7 @@ const ProjectCard = ({ title, description, date, roles }) => (
 const projects = [
   {
     type: "ACTOR",
-    title: "Casting Call For Male/Female Actors For Fashion Brand Shoot",
+    title: "Actors For Fashion Brand Shoot",
     description: "Casting Call For Male/Female Actors",
     date: "03 Sep 2024",
     roles: 5,
@@ -25,14 +25,14 @@ const projects = [
     title: "Looking For Female Actor For A Bollywood Movie Shoot",
     description: "Looking For Female Actor",
     date: "25 Aug 2024",
-    roles: 1,
+    roles: 2,
   },
   {
     type: "ACTOR",
     title: "Looking For Male Actor For A Bollywood Movie Shoot",
     description: "Looking For Male Actor",
     date: "25 Aug 2024",
-    roles: 1,
+    roles: 3,
   },
   {
     type: "ACTOR",
