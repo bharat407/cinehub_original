@@ -8,6 +8,11 @@ import {
   X,
 } from "lucide-react";
 import SkillModal from "./SkillsModal"; // Adjust the import path as needed
+import LangModal from "./LangSect";
+import WorkPreferenceModal from "./WorkMain";
+import ExperienceModal from "./Expmain";
+import BudgetModal from "./Bugetmain";
+import Experience from "./Mainexp";
 
 const EducationForm = ({ onSave, onCancel }) => {
   const [education, setEducation] = useState({
@@ -25,13 +30,6 @@ const EducationForm = ({ onSave, onCancel }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSave(education);
-  };
-
-  const [skills, setSkills] = useState([]);
-  const [isSkillModalOpen, setIsSkillModalOpen] = useState(false);
-
-  const handleSaveSkill = (newSkill) => {
-    setSkills([...skills, newSkill]);
   };
 
   return (
@@ -340,8 +338,15 @@ const PortfolioInterface = () => {
     </div>
   );
 
-  
-  
+  const renderOtherSection = () => (
+    <div className=" flex flex-col mb-3">
+      <div className="flex justify-between items-center">
+        <h3 className="text-xl font-semibold">Other Informations</h3>
+      </div>
+      <hr className="border-gray-200 w-full border" />
+    </div>
+  );
+
   const renderSkillSection = () => (
     <div className="flex flex-col mb-3">
       <div className="flex justify-between items-center">
@@ -742,6 +747,18 @@ const PortfolioInterface = () => {
           <div className="mt-3"></div>
           {renderPhysicalStatsSection()}
           {renderSkillSection()}
+          <LangModal />
+          <WorkPreferenceModal />
+          {renderOtherSection()}
+          <ExperienceModal />
+          <BudgetModal />
+        </div>
+      )}
+
+      {activeTab === "Experience" && (
+        <div>
+          {" "}
+          <Experience />
         </div>
       )}
 

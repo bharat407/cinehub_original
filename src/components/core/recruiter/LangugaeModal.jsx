@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { X } from "lucide-react";
 
-const SkillModal = ({ isOpen, onClose, onSave }) => {
-  const [skill, setSkill] = useState("");
+const LangModal = ({ isOpen, onClose, onSave }) => {
+  const [language, setLanguage] = useState(""); // Changed Lang to language
   const [proficiency, setProficiency] = useState("Beginner");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave({ skill, proficiency });
-    setSkill("");
+    onSave({ language, proficiency }); // Changed Lang to language
+    setLanguage(""); // Reset language input
     setProficiency("Beginner");
     onClose();
   };
@@ -25,17 +25,17 @@ const SkillModal = ({ isOpen, onClose, onSave }) => {
           <X className="w-6 h-6" />
         </button>
         <h2 className="text-xl font-semibold mb-4 text-center text-red-500">
-          Add Skill
+          Add Language
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Skill Name
+              Language Name
             </label>
             <input
               type="text"
-              value={skill}
-              onChange={(e) => setSkill(e.target.value)}
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
               className="border border-gray-300 p-2 w-full rounded"
               required
             />
@@ -59,7 +59,7 @@ const SkillModal = ({ isOpen, onClose, onSave }) => {
             type="submit"
             className="bg-red-500 text-white px-4 py-2 rounded w-full mt-4"
           >
-            Add Skill
+            Add Language
           </button>
         </form>
       </div>
@@ -67,4 +67,4 @@ const SkillModal = ({ isOpen, onClose, onSave }) => {
   );
 };
 
-export default SkillModal;
+export default LangModal;
